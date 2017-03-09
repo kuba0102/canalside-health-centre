@@ -7,8 +7,7 @@
   @section('header')
   <div class="container">
     <div class="jumbotron">
-      <h1>Elder Studios Scrabble System</h1>
-      <p>A Scrabble club requires a system to store members’ information and provide leaderboard for members to track their league progress.</p>
+      <h1>Canalside Health Centre</h1>
     </div>
   </div>
 <div class="container">
@@ -23,6 +22,7 @@
   @show
 
   <div class="container">
+
     @yield('content')
   </div>
 </body>
