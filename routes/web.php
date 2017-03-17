@@ -14,5 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('home', 'StaffController@index');
 Route::get('login', 'LoginController@loginForm');
 Route::post('login', 'LoginController@login');
+Route::get('logout', 'LoginController@logout');
+Route::get('addPatientForm', 'PatientController@addForm')->middleware('can:create,App\ChcPatient');

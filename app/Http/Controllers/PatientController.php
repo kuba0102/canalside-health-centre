@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class StaffController extends Controller
+class PatientController extends Controller
 {
 
   function __construct()
@@ -12,8 +12,8 @@ class StaffController extends Controller
     $this->middleware('auth');
   }
 
-  function index()
+  function addForm()
   {
-    return view('index/index');
+      return view('patient/add-patient-form');
   }
 }

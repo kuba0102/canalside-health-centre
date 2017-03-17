@@ -13,12 +13,14 @@ class CreateStaffTable extends Migration
      */
      public function up()
      {
-       Schema::create('chc_staff', function (Blueprint $table) {
+       Schema::create('chc_staff', function (Blueprint $table)
+       {
            $table->increments('id');
            $table->string('name');
+           $table->string('last_name');
            $table->string('email')->unique();
            $table->string('password');
-           $table->tinyInteger('role'); //new column
+           $table->tinyInteger('role');
            $table->rememberToken();
            $table->timestamps();
        });

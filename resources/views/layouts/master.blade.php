@@ -10,12 +10,13 @@
       <h1>Canalside Health Centre</h1>
     </div>
   </div>
+  <div>Logged in as : {{Auth::user()->name}}</div>
 <div class="container">
   <ul class="nav nav-pills">
-    <li role="presentation"><a href="{{url('all')}}">View All Members</a></li>
-    <li role="presentation"><a href="{{url('getTopTen')}}">Top Ten</a></li>
-    <li role="presentation"><a href="{{url('addMemberForm')}}">Add Member</a></li>
-    <li role="presentation"><a href="{{url('addResultForm')}}">Add New Results</a></li>
+    <li role="presentation"><a href="{{url('logout')}}">Logout</a></li>
+    @can('create', App\ChcPatient::class)
+        <li><a href="{{url('addPatientForm')}}">Add Patient</a></li>
+    @endcan
     <li role="presentation"><a href="https://github.com/kuba0102/elder-studios-scrabble-system-laravel/">GitHub Repository</a></li>
   </ul>
 </div>
