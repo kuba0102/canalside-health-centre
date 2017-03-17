@@ -15,7 +15,7 @@ class CreateStaffTable extends Migration
      {
        Schema::create('chc_staff', function (Blueprint $table)
        {
-           $table->increments('id');
+           $table->increments('id')->unsigned();
            $table->string('name');
            $table->string('last_name');
            $table->string('email')->unique();
