@@ -17,7 +17,7 @@ class PatientPolicy
      */
      public function create(User $user)
      {
-         if($user->role==1)
+         if($user->pos_id==1)
          {
              return true;
          }
