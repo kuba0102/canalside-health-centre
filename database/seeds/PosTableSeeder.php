@@ -11,7 +11,7 @@ class PosTableSeeder extends Seeder
      */
     public function run()
     {
-          DB::table('chc_position')->insert(['name' => 'Receptionist','description' => 'Receptionist']);
-          DB::table('chc_position')->insert(['name' => 'Doctor','description' => 'Doctor']);
+          DB::table('chc_positions')->insert(['name' => 'Receptionist','description' => 'Receptionist']);
+          DB::table('chc_positions')->insert(['name' => 'Doctor','description' => 'Doctor']);
     }
 }

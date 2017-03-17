@@ -13,7 +13,7 @@ class CreatePositionTable extends Migration
      */
     public function up()
     {
-        Schema::create('chc_position', function (Blueprint $table)
+        Schema::create('chc_positions', function (Blueprint $table)
         {
             $table->increments('id')->unsigned();
             $table->string('name')->unique();
@@ -29,6 +29,6 @@ class CreatePositionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chc_position');
+        Schema::dropIfExists('chc_positions');
     }
 }

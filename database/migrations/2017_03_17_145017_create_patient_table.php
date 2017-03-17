@@ -13,7 +13,7 @@ class CreatePatientTable extends Migration
   */
   public function up()
   {
-    Schema::create('chc_patient', function (Blueprint $table)
+    Schema::create('chc_patients', function (Blueprint $table)
     {
       $table->increments('id')->unsigned();
       $table->integer('doctor_id')->unsigned()->nullable();
@@ -34,6 +34,6 @@ class CreatePatientTable extends Migration
   */
   public function down()
   {
-    Schema::dropIfExists('chc_patient');
+    Schema::dropIfExists('chc_patients');
   }
 }

@@ -17,7 +17,7 @@ class CreateStaffTable extends Migration
     {
       $table->increments('id')->unsigned();
       $table->integer('pos_id')->unsigned()->nullable();
-      $table->foreign('pos_id')->references('id')->on('chc_position')->onDelete('set null');
+      $table->foreign('pos_id')->references('id')->on('chc_positions')->onDelete('set null');
       $table->string('name');
       $table->string('last_name');
       $table->string('email')->unique();

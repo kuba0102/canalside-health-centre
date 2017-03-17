@@ -8,5 +8,5 @@
         {{ session('loginError') }}
     </div>
 @endif
-
+<h1> Error </h1>
 @endsection

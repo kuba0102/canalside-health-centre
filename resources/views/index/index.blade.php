@@ -3,10 +3,14 @@
 @section('title', 'Login')
 
 @section('content')
-@if (session('loginError'))
+<h1>Main Menu</h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    @if (session('loginError'))
     <div>
-        {{ session('loginError') }}
+      {{ session('loginError') }}
     </div>
-@endif
-
+    @endif
+  </div>
+</div>
 @endsection
