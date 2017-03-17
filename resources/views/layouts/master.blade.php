@@ -14,8 +14,10 @@
 <div class="container">
   <ul class="nav nav-pills">
     <li role="presentation"><a href="{{url('logout')}}">Logout</a></li>
+    <!-- @if (Auth::user()->pos_id == 1)  @endif-->
     @can('create', App\ChcPatient::class)
         <li><a href="{{url('addPatientForm')}}">Add Patient</a></li>
+        <li><a href="{{url('viewAllPatints')}}">View All Patients</a></li>
     @endcan
     <li role="presentation"><a href="https://github.com/kuba0102/elder-studios-scrabble-system-laravel/">GitHub Repository</a></li>
   </ul>
