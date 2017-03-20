@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Add New Patient')
+@section('title', 'Update Patient')
 
 @section('content')
 @if (count($errors) > 0)
@@ -13,34 +13,33 @@
 </div>
 @endif
 
-<h1>Add New Patient</h1>
+<h1>Update Patient</h1>
 <div class="panel panel-default">
   <div class="panel-body">
-    <form action="{{url('addPatient')}}" method="POST">
+    <form action="{{url('updatePatient/'.$patient->id)}}" method="POST">
       {{ csrf_field() }}
       <div class="input-group">
         <span class="input-group-addon" id="name"></span>
-        <input type="text" name="name" class="form-control" placeholder="Name" aria-describedby="basic-addon1">
+        <input type="text" name="name" class="form-control" placeholder="Name" aria-describedby="basic-addon1" value="{{@$patient->name}}">
       </div>
       <div class="input-group">
         <span class="input-group-addon" id="lastName"></span>
-        <input type="text" name="lastName" class="form-control" placeholder="Last Name" aria-describedby="basic-addon1">
+        <input type="text" name="lastName" class="form-control" placeholder="Last Name" aria-describedby="basic-addon1" value="{{@$patient->last_name}}">
       </div>
       <div class="input-group">
         <span class="input-group-addon" id="mbNum"></span>
-        <input type="number" name="mbNum" class="form-control" placeholder="Mobile Number" aria-describedby="basic-addon1">
+        <input type="number" name="mbNum" class="form-control" placeholder="Mobile Number" aria-describedby="basic-addon1" value="{{@$patient->contact_number}}">
       </div>
       <div class="input-group">
         <span class="input-group-addon" id="address"></span>
-        <input type="text" name="address" class="form-control" placeholder="Address" aria-describedby="basic-addon1">
+        <input type="text" name="address" class="form-control" placeholder="Address" aria-describedby="basic-addon1" value="{{@$patient->address}}">
       </div>
       <div class="input-group">
         <span class="input-group-addon" id="docId"></span>
-        <input type="number" name="docId" class="form-control" placeholder="Doctor Id" aria-describedby="basic-addon1">
+        <input type="number" name="docId" class="form-control" placeholder="Doctor Id" aria-describedby="basic-addon1" value="{{@$patient->doctor_id}}">
       </div>
       <label>Date Of Birth</label>
       <div class="input-group">
-
         <select name="DOBMonth">
           <option> - Month - </option>
           <option value="01">January</option>
@@ -143,9 +142,11 @@
           <option value="1947">1947</option>
         </select>
       </div>
-
-      <input type="submit" name="submitBtn" value="Add Patient">
+      <label>Confirm Update?</label>
+      <input type='checkbox'required id="patient" name='patient'/>
+      <input type="submit" name="submitBtn" value="Update Patient">
     </form>
+    <p><a href="{{url('details/'.$patient->id)}}"><input type="submit" name="submitBtn" value="Cancle"></a></p>
   </div>
 </div>
 @endsection
