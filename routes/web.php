@@ -22,3 +22,4 @@ Route::get('logout', 'LoginController@logout');
 Route::get('addPatientForm', 'PatientController@addForm')->middleware('can:create,App\ChcPatient');
 // processs form
 Route::get('allPatients', 'PatientController@allPatients')->middleware('can:create,App\ChcPatient');
+Route::get('details/{patientId}', 'PatientController@details');
