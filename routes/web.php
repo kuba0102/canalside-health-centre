@@ -16,10 +16,13 @@ Route::get('/', function ()
   return view('index/index');
 });
 Route::get('home', 'StaffController@index');
+
 Route::get('login', 'LoginController@loginForm');
 Route::post('login', 'LoginController@login');
 Route::get('logout', 'LoginController@logout');
+
 Route::get('addPatientForm', 'PatientController@addForm')->middleware('can:create,App\ChcPatient');
-// processs form
+Route::post('addPatient', 'PatientController@addPatient')->middleware('can:create,App\ChcPatient');
+
 Route::get('allPatients', 'PatientController@allPatients')->middleware('can:create,App\ChcPatient');
 Route::get('details/{patientId}', 'PatientController@details');
