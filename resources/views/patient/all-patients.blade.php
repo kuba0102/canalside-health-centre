@@ -3,12 +3,12 @@
 @section('title', 'All Members')
 
 @section('content')
-<h1>View All Members</h1>
+<h1>View All Patients</h1>
 <div class="panel panel-default">
   <div class="panel-body">
-    @foreach ($members as $member)
+    @foreach ($patients as $patient)
     <p>
-      <a href="{{url('details/'.$member->member_id)}}">{{$member->member_id}}  {{$member->member_name}}  {{$member->member_last_name}}</a>
+      <a href="{{url('details/'.$patient->id)}}">{{$patient->id}}  {{$patient->name}}  {{$patient->last_name}}</a>
     </p>
     @endforeach
   </div>
