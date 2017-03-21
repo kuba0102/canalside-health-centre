@@ -27,28 +27,28 @@ $yearCount = 1900;
       <!-- Name filed -->
       <div class="input-group">
         <span class="input-group-addon" id="name"></span>
-        <input type="text" name="name" class="form-control" placeholder="Name" aria-describedby="basic-addon1">
+        <input value="{{ old('name') }}" type="text" name="name" class="form-control" placeholder="Name" aria-describedby="basic-addon1">
       </div>
       <!-- Last name filed -->
       <div class="input-group">
         <span class="input-group-addon" id="lastName"></span>
-        <input type="text" name="lastName" class="form-control" placeholder="Last Name" aria-describedby="basic-addon1">
+        <input value="{{ old('lastName') }}" type="text" name="lastName" class="form-control" placeholder="Last Name" aria-describedby="basic-addon1">
       </div>
       <!-- Contact number filed -->
       <div class="input-group">
         <span class="input-group-addon" id="mbNum"></span>
-        <input type="number" name="mbNum" class="form-control" placeholder="Mobile Number" aria-describedby="basic-addon1">
+        <input value="{{ old('mbNum') }}" type="number" name="mbNum" class="form-control" placeholder="Mobile Number" aria-describedby="basic-addon1">
       </div>
       <!-- Address filed -->
       <div class="input-group">
         <span class="input-group-addon" id="address"></span>
-        <input type="text" name="address" class="form-control" placeholder="Address" aria-describedby="basic-addon1">
+        <input value="{{ old('address') }}" type="text" name="address" class="form-control" placeholder="Address" aria-describedby="basic-addon1">
       </div>
       <!-- Docotr selection list -->
       <div class="input-group">
         <label>Doctor: </label>
         <select required id="docId" name="docId">
-          <option >Pick Doctor</option>
+          <option>Pick Doctor</option>
           @foreach ($doctors as $doctor)
           <option value="{{@$doctor->id}}">{{@$doctor->name}} {{@$doctor->last_name}}</option>
           @endforeach

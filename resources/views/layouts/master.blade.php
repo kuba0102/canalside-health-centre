@@ -17,8 +17,8 @@
         <ul class="nav nav-pills">
           <li role="presentation"><a href="{{url('home')}}">Home</a></li>
           @can('create', App\ChcPatient::class)
-          <li><a href="{{url('addPatientForm')}}">Add Patient</a></li>
           <li><a href="{{url('allPatients')}}">View All Patients</a></li>
+          <li><a href="{{url('addPatientForm')}}">Add Patient</a></li>
           @endcan
           <li role="presentation"><a href="{{url('logout')}}">Logout</a></li>
         </ul>
