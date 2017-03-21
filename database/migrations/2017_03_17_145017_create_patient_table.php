@@ -20,6 +20,7 @@ class CreatePatientTable extends Migration
       $table->foreign('doctor_id')->references('id')->on('chc_staff')->onDelete('set null');
       $table->string('name');
       $table->string('last_name');
+      $table->string('gender_id')->references('id')->on('chc_genders')->onDelete('set null');
       $table->string('address');
       $table->date('date_of_birth');
       $table->string('contact_number');

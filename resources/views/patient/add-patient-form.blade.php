@@ -44,9 +44,17 @@ $yearCount = 1900;
         <span class="input-group-addon" id="address"></span>
         <input value="{{ old('address') }}" type="text" name="address" class="form-control" placeholder="Address" aria-describedby="basic-addon1">
       </div>
-      <!-- Docotr selection list -->
+      <!-- Gender radio buttons -->
+      <label>Gender: </label>
       <div class="input-group">
-        <label>Doctor: </label>
+        <label>Male</label>
+        <input type="radio" name="gender" value="1">
+        <label>Female</label>
+        <input type="radio" name="gender" value="2">
+      </div>
+      <!-- Docotr selection list -->
+      <label>Doctor: </label>
+      <div class="input-group">
         <select required id="docId" name="docId">
           <option>Pick Doctor</option>
           @foreach ($doctors as $doctor)
@@ -55,12 +63,16 @@ $yearCount = 1900;
         </select>
       </div>
       <!-- Date of birth selection lists -->
+      <label>Date Of Birth: </label>
       <div class="input-group">
-        <label>Date Of Birth: </label>
         <select required name="DOBDay">
           <option> - Day - </option>
           @while($dayCount <= 31)
+          @if($dayCount <= 9)
+          <option value="0{{$dayCount}}">0{{$dayCount}}</option>
+          @else
           <option value="{{$dayCount}}">{{$dayCount}}</option>
+          @endif
           {{$dayCount++}}
           @endwhile
         </select>
@@ -68,7 +80,11 @@ $yearCount = 1900;
         <select required name="DOBMonth">
           <option> - Month - </option>
           @while($monthCount <= 12)
+          @if($monthCount <= 9)
+          <option value="0{{$monthCount}}">0{{$monthCount}}</option>
+          @else
           <option value="{{$monthCount}}">{{$monthCount}}</option>
+          @endif
           {{$monthCount++}}
           @endwhile
         </select>
