@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\ChcPatient;
+use App\ChcStaff;
 
 use Illuminate\Http\Request;
 
@@ -15,7 +16,8 @@ class PatientController extends Controller
 
   function addForm()
   {
-    return view('patient/add-patient-form');
+    $docList = ChcStaff::getDoctorList();
+    return view('patient/add-patient-form',['doctors' => $docList]);
   }
 
   /*
@@ -68,7 +70,8 @@ class PatientController extends Controller
   function details($patientId)
   {
     $patient = ChcPatient::find($patientId);
-    return view('patient/details',['patient' => $patient]);
+    $doctor = ChcStaff::find($patient->doctor_id);
+    return view('patient/details',['patient' => $patient, 'doctor' => $doctor]);
   }
 
   /*
@@ -87,7 +90,8 @@ class PatientController extends Controller
   function updateForm($patientId)
   {
     $patient = ChcPatient::find($patientId);
-    return view('patient/update-patient-form',['patient' => $patient]);
+    $docList = ChcStaff::getDoctorList();
+    return view('patient/update-patient-form',['patient' => $patient], ['doctors' => $docList]);
   }
 
   /*
