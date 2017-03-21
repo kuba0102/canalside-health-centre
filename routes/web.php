@@ -23,6 +23,9 @@ Route::get('logout', 'LoginController@logout');
 
 Route::get('addPatientForm', 'PatientController@addForm')->middleware('can:create,App\ChcPatient');
 Route::post('addPatient', 'PatientController@addPatient')->middleware('can:create,App\ChcPatient');
+Route::post('removePatient', 'PatientController@removePatient')->middleware('can:create,App\ChcPatient');
+Route::get('updatePatientForm/{patientId}', 'PatientController@updateForm')->middleware('can:create,App\ChcPatient');
+Route::post('updatePatient/{patientId}', 'PatientController@updatePatient')->middleware('can:create,App\ChcPatient');
 
 Route::get('allPatients', 'PatientController@allPatients')->middleware('can:create,App\ChcPatient');
 Route::get('details/{patientId}', 'PatientController@details');

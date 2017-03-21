@@ -21,7 +21,7 @@
     <form action="{{url('removePatient')}}" method="POST">
       {{ csrf_field() }}
       <label>Remove Patient</label>
-      <input type='checkbox' value='{{$patient->id}}' id="patient" name='patient'/>
+      <input type='checkbox'required value='{{$patient->id}}' id="patient" name='patient'/>
       <input type="submit" name="submitBtn" value="Delete Patient">
     </form>
   </div>
