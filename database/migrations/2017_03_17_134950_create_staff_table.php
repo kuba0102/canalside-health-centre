@@ -20,6 +20,7 @@ class CreateStaffTable extends Migration
       $table->foreign('pos_id')->references('id')->on('chc_positions')->onDelete('set null');
       $table->string('name');
       $table->string('last_name');
+      $table->string('gender_id')->references('id')->on('chc_genders')->onDelete('set null');
       $table->string('email')->unique();
       $table->string('password');
       $table->rememberToken();

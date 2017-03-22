@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\ChcPatient;
+use App\ChcStaff;
+use App\ChcGender;
 
 use Illuminate\Http\Request;
 
@@ -15,7 +17,8 @@ class PatientController extends Controller
 
   function addForm()
   {
-    return view('patient/add-patient-form');
+    $docList = ChcStaff::getDoctorList();
+    return view('patient/add-patient-form',['doctors' => $docList]);
   }
 
   /*
@@ -32,7 +35,8 @@ class PatientController extends Controller
       'DOBYear' => 'required|numeric',
       'DOBMonth' => 'required|numeric',
       'DOBDay' => 'required|numeric',
-      'docId' => 'required|numeric'
+      'docId' => 'required|numeric',
+      'gender' => 'required|numeric'
     ]);
     $lastId = ChcPatient::getLastPatientId();
     $lastId = $lastId[0]->id;
@@ -42,6 +46,7 @@ class PatientController extends Controller
     $patient->name = $request->name;
     $patient->last_name = $request->lastName;
     $patient->contact_number = $request->mbNum;
+    $patient->gender_id = $request->gender;
     $patient->address = $request->address;
     $patient->doctor_id = $request->docId;
     $patient->date_of_birth = $request->DOBYear.$request->DOBMonth.$request->DOBDay;
@@ -68,7 +73,9 @@ class PatientController extends Controller
   function details($patientId)
   {
     $patient = ChcPatient::find($patientId);
-    return view('patient/details',['patient' => $patient]);
+    $doctor = ChcStaff::find($patient->doctor_id);
+    $gender = ChcGender::find($patient->gender_id);
+    return view('patient/details',['patient' => $patient, 'doctor' => $doctor, 'gender' => $gender]);
   }
 
   /*
@@ -87,7 +94,8 @@ class PatientController extends Controller
   function updateForm($patientId)
   {
     $patient = ChcPatient::find($patientId);
-    return view('patient/update-patient-form',['patient' => $patient]);
+    $docList = ChcStaff::getDoctorList();
+    return view('patient/update-patient-form',['patient' => $patient], ['doctors' => $docList]);
   }
 
   /*
@@ -105,7 +113,8 @@ class PatientController extends Controller
     'DOBYear' => 'required|numeric',
     'DOBMonth' => 'required|numeric',
     'DOBDay' => 'required|numeric',
-    'docId' => 'required|numeric'
+    'docId' => 'required|numeric',
+    'gender' => 'required|numeric'
     ]);
 
     $patient = ChcPatient::find($patientId);
@@ -113,6 +122,7 @@ class PatientController extends Controller
     $patient->last_name = $request->lastName;
     $patient->contact_number = $request->mbNum;
     $patient->address = $request->address;
+    $patient->gender_id = $request->gender;
     $patient->doctor_id = $request->docId;
     $patient->date_of_birth = $request->DOBYear.$request->DOBMonth.$request->DOBDay;
     $patient->save();
