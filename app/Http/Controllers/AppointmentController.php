@@ -115,6 +115,6 @@ Displays appoitment details and if appointment booking was sucesfull.
     $appointment->date = $request->date;
     $appointment->time = sprintf("%02d",$request->hour).sprintf("%02d",$request->min).sprintf("%02d",$request->second);
     $appointment->save();
-    return view('appointment/appointment-details');
+    return redirect('home');
   }
 }
