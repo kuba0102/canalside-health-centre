@@ -1,7 +1,7 @@
 @php // variables for date picker
 $dayCount = 1;
 $monthCount = 1;
-$yearCount = 1900;
+$yearCount = date('Y');
 @endphp
 
 @extends('layouts.master')
@@ -22,75 +22,111 @@ $yearCount = 1900;
 <h1>Add New Appointment</h1>
 <div class="panel panel-default">
   <div class="panel-body">
-    <form action="{{url('addPatient')}}" method="POST">
-      {{ csrf_field() }}
+    <div class="well well-sm">
+      <form action="{{url('addAppointmentForm/'.$patient->id.'/'.$patient->doctor_id)}}" method="GET">
+        {{ csrf_field() }}
+        <!-- Gender radio buttons -->
+        <h3><span class="label label-primary">Doctor Gender</span></h3>
+        <div class="input-group">
+          <input type="radio" name="gender" value="1">
+          <label>Male</label><br>
+          <input type="radio" name="gender" value="2">
+          <label>Female</label><br>
+          <input type="radio" name="gender" value="3" checked>
+          <label>Both</label>
+        </div>
 
-      <!-- Gender radio buttons
-      <label>Gender: </label>
-      <div class="input-group">
-      <label>Male</label>
-      <input type="radio" name="gender" value="1">
-      <label>Female</label>
-      <input type="radio" name="gender" value="2">
+        <!-- Other Doctors radio buttons -->
+        <h3><span class="label label-primary">Other Doctors</span></h3>
+        <div class="input-group">
+          <input type="radio" name="otherDoctors" value="0" checked>
+          <label>Patient Doctor</label><br>
+          <input type="radio" name="otherDoctors" value="1">
+          <label>Other Doctors</label>
+        </div>
+
+        <!-- Date of birth selection lists -->
+        <h3><span class="label label-primary">Appointment Date</span></h3>
+        <div class="input-group">
+          <select required name="day">
+            <option value="{{date('d')}}">{{date('d')}}</option>
+            <option> - Day - </option>
+            @while($dayCount <= 31)
+            @if($dayCount <= 9)
+            <option value="0{{$dayCount}}">0{{$dayCount}}</option>
+            @else
+            <option value="{{$dayCount}}">{{$dayCount}}</option>
+            @endif
+            {{$dayCount++}}
+            @endwhile
+          </select>
+
+          <select required name="month">
+            <option value="{{date('m')}}">{{date('m')}}</option>
+            <option> - Month - </option>
+            @while($monthCount <= 12)
+            @if($monthCount <= 9)
+            <option value="0{{$monthCount}}">0{{$monthCount}}</option>
+            @else
+            <option value="{{$monthCount}}">{{$monthCount}}</option>
+            @endif
+            {{$monthCount++}}
+            @endwhile
+          </select>
+
+          <select required name="year">
+            <option value="{{date('Y')}}">{{date('Y')}}</option>
+            <option> - Year - </option>
+            @while($yearCount <= date('Y')+4)
+            <option value="{{$yearCount}}">{{$yearCount}}</option>
+            {{$yearCount++}}
+            @endwhile
+          </select>
+        </div>
+
+        <!-- Submit button -->
+        <br><input type="submit" name="submitBtn" value="Find Appointment">
+      </form>
     </div>
-  -->
-  <!-- Date of birth selection lists -->
-  <label>Date Of Birth: </label>
-  <div class="input-group">
-    <select required name="DOBDay">
-      <option> - Day - </option>
-      @while($dayCount <= 31)
-      @if($dayCount <= 9)
-      <option value="0{{$dayCount}}">0{{$dayCount}}</option>
-      @else
-      <option value="{{$dayCount}}">{{$dayCount}}</option>
-      @endif
-      {{$dayCount++}}
-      @endwhile
-    </select>
 
-    <select required name="DOBMonth">
-      <option> - Month - </option>
-      @while($monthCount <= 12)
-      @if($monthCount <= 9)
-      <option value="0{{$monthCount}}">0{{$monthCount}}</option>
-      @else
-      <option value="{{$monthCount}}">{{$monthCount}}</option>
-      @endif
-      {{$monthCount++}}
-      @endwhile
-    </select>
+    <div class="well well-sm">
 
-    <select required name="DOBYear">
-      <option> - Year - </option>
-      @while($yearCount <= date('Y'))
-      <option value="{{$yearCount}}">{{$yearCount}}</option>
-      {{$yearCount++}}
-      @endwhile
-    </select>
-  </div>
-  <!-- Submit button -->
-  <input type="submit" name="submitBtn" value="Find Appointment">
-</form>
+      <h4><span class="label label-primary">Available Appointments</span></h4>
+      <form action="{{url('addAppointment')}}" method="POST">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <div class="input-group">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Appointment</th>
+                <th>Time</th>
+                <th>Doctor Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($appoitnments as $appoints)
+              <input type="hidden" name="docId" value="{{@$appoints['docId']}}"/>
+              <input type="hidden" name="date" value="{{@$appoints['date']}}"/>
+              <input type="hidden" name="hour" value="{{@$appoints['hour']}}"/>
+              <input type="hidden" name="min" value="{{@$appoints['min']}}"/>
+              <input type="hidden" name="second" value="{{@$appoints['second']}}"/>
+              <tr>
+                <td><input type="radio" name="patientId" value="{{@$patient->id}}" required></td>
+                <td>{{@$appoints['hour']}}:{{sprintf("%02d",@$appoints['min'])}}</td>
+                <td>{{@$appoints['name']}} {{@$appoints['lastName']}} </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+          <!-- Submit button -->
+        @if(count(@$appoitnments) > 0)
+        <input type="submit" name="submitBtn" value="Add Appointment">
+        @endif
+        <a href="{{url('home')}}"><input type="button" name="submitBtn" value="Cancle"></a>
+      </form>
 
-<label>Appointments Avaiable: </label>
-<form action="{{url('addPatient')}}" method="POST">
-  <div class="input-group">
-    @foreach($appoitnments as $appoints)
-    <input type="hidden" name="docId" value="{{@$appoints['docId']}}"/>
-    <input type="hidden" name="date" value="{{@$appoints['date']}}"/>
-    <input type="hidden" name="time" value="{{@$appoints['time']}}"/>
-    <div class="input-group">
-      <input type="radio" name="patientId" value="{{@$patient->id}}" required>
-      <label>{{@$appoints['name']}} {{@$appoints['lastName']}} {{@$appoints['time']}}</label>
     </div>
-    @endforeach
   </div>
-  <!-- Submit button -->
-  <input type="submit" name="submitBtn" value="Add Appointment">
-</form>
-
-
-</div>
 </div>
 @endsection

@@ -44,60 +44,61 @@ $yearCount = 1900;
         <span class="input-group-addon" id="address"></span>
         <input value="{{ old('address') }}" type="text" name="address" class="form-control" placeholder="Address" aria-describedby="basic-addon1">
       </div>
-      <!-- Gender radio buttons -->
-      <label>Gender: </label>
-      <div class="input-group">
-        <label>Male</label>
-        <input type="radio" name="gender" value="1">
-        <label>Female</label>
-        <input type="radio" name="gender" value="2">
-      </div>
-      <!-- Docotr selection list -->
-      <label>Doctor: </label>
-      <div class="input-group">
-        <select required id="docId" name="docId">
-          <option>Pick Doctor</option>
-          @foreach ($doctors as $doctor)
-          <option value="{{@$doctor->id}}">{{@$doctor->name}} {{@$doctor->last_name}}</option>
-          @endforeach
-        </select>
-      </div>
-      <!-- Date of birth selection lists -->
-      <label>Date Of Birth: </label>
-      <div class="input-group">
-        <select required name="DOBDay">
-          <option> - Day - </option>
-          @while($dayCount <= 31)
-          @if($dayCount <= 9)
-          <option value="0{{$dayCount}}">0{{$dayCount}}</option>
-          @else
-          <option value="{{$dayCount}}">{{$dayCount}}</option>
-          @endif
-          {{$dayCount++}}
-          @endwhile
-        </select>
+      <div class="well well-sm">
+        <!-- Gender radio buttons -->
+        <h4><span class="label label-primary">Gender</span></h4>
+        <div class="input-group">
+          <input type="radio" name="gender" value="1">
+          <label>Male</label><br>
+          <input type="radio" name="gender" value="2">
+          <label>Female</label>
+        </div>
+        <!-- Docotr selection list -->
+        <h4><span class="label label-primary">Doctor</span></h4>
+        <div class="input-group">
+          <select required id="docId" name="docId">
+            <option>Pick Doctor</option>
+            @foreach ($doctors as $doctor)
+            <option value="{{@$doctor->id}}">{{@$doctor->name}} {{@$doctor->last_name}}</option>
+            @endforeach
+          </select>
+        </div>
+        <!-- Date of birth selection lists -->
+        <h4><span class="label label-primary">Date Of Birth</span></h4>
+        <div class="input-group">
+          <select required name="DOBDay">
+            <option> - Day - </option>
+            @while($dayCount <= 31)
+            @if($dayCount <= 9)
+            <option value="0{{$dayCount}}">0{{$dayCount}}</option>
+            @else
+            <option value="{{$dayCount}}">{{$dayCount}}</option>
+            @endif
+            {{$dayCount++}}
+            @endwhile
+          </select>
 
-        <select required name="DOBMonth">
-          <option> - Month - </option>
-          @while($monthCount <= 12)
-          @if($monthCount <= 9)
-          <option value="0{{$monthCount}}">0{{$monthCount}}</option>
-          @else
-          <option value="{{$monthCount}}">{{$monthCount}}</option>
-          @endif
-          {{$monthCount++}}
-          @endwhile
-        </select>
+          <select required name="DOBMonth">
+            <option> - Month - </option>
+            @while($monthCount <= 12)
+            @if($monthCount <= 9)
+            <option value="0{{$monthCount}}">0{{$monthCount}}</option>
+            @else
+            <option value="{{$monthCount}}">{{$monthCount}}</option>
+            @endif
+            {{$monthCount++}}
+            @endwhile
+          </select>
 
-        <select required name="DOBYear">
-          <option> - Year - </option>
-          @while($yearCount <= date('Y'))
-          <option value="{{$yearCount}}">{{$yearCount}}</option>
-          {{$yearCount++}}
-          @endwhile
-        </select>
+          <select required name="DOBYear">
+            <option> - Year - </option>
+            @while($yearCount <= date('Y'))
+            <option value="{{$yearCount}}">{{$yearCount}}</option>
+            {{$yearCount++}}
+            @endwhile
+          </select>
+        </div>
       </div>
-
       <!-- Submit button -->
       <input type="submit" name="submitBtn" value="Add Patient">
     </form>
