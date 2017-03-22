@@ -15,9 +15,10 @@ return: docList = list of doctors.
   static function getDoctorList()
   {
     $docList = DB::table('chc_staff')
-    ->select('id', 'name', 'last_name')
-    ->orderBy('last_name','desc')
-    ->where('pos_id', '=', 2)
+    ->join('chc_genders', 'chc_staff.gender_id', '=', 'chc_genders.id')
+    ->select('chc_staff.id', 'chc_staff.name', 'chc_staff.last_name', 'chc_genders.name AS genderName')
+    ->orderBy('chc_staff.last_name')
+    ->where('chc_staff.pos_id', '=', 2)
     ->get();
     return $docList;
   }

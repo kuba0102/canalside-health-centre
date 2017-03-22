@@ -17,8 +17,10 @@
           {{ session('loginError') }}
         </div>
         @endif
+
         <form action="{{url('login')}}" method="POST">
           {{ csrf_field() }}
+
           <h1>Login</h1>
           <div class="input-group">
             <label for="title">Email:</label>

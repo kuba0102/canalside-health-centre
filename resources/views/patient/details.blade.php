@@ -19,6 +19,7 @@
 
     <!--Extra Options-->
     <p><a href="{{url('updatePatientForm/'.$patient->id)}}"><input type="submit" name="submitBtn" value="Update Patient Details"></a></p>
+    <p><a href="{{url('addAppointmentForm/'.$patient->id)}}"><input type="submit" name="submitBtn" value="Add Appointment Details"></a></p>
     <form action="{{url('removePatient')}}" method="POST">
       {{ csrf_field() }}
       <label>Remove Patient</label>
