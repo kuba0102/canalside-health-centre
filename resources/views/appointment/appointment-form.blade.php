@@ -90,42 +90,40 @@ $yearCount = date('Y');
     </div>
 
     <div class="well well-sm">
-
       <h4><span class="label label-primary">Available Appointments</span></h4>
-      <form action="{{url('addAppointment')}}" method="POST">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <div class="input-group">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Appointment</th>
-                <th>Time</th>
-                <th>Doctor Name</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach($appoitnments as $appoints)
-              <tr>
-                <td><input type="radio" name="patientId" value="{{@$patient->id}}">
-                  <input type="radio" name="docId" value="{{@$appoints['docId']}}"/>
-                  <input type="radio" name="date" value="{{@$appoints['date']}}"/>
-                  <input type="radio" name="hour" value="{{@$appoints['hour']}}"/>
-                  <input type="radio" name="min" value="{{@$appoints['min']}}"/>
-                  <input type="radio" name="second" value="{{@$appoints['second']}}"/>
+      <div class="input-group">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Appointment</th>
+              <th>Time</th>
+              <th>Doctor Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach($appoitnments as $appoints)
+            <tr>
+              <form action="{{url('addAppointment')}}" method="POST">
+                {{ csrf_field() }}
+                <td><input type="hidden" name="patientId" value="{{@$patient->id}}">
+                  <input type="hidden" name="docId" value="{{@$appoints['docId']}}"/>
+                  <input type="hidden" name="date" value="{{@$appoints['date']}}"/>
+                  <input type="hidden" name="hour" value="{{@$appoints['hour']}}"/>
+                  <input type="hidden" name="min" value="{{@$appoints['min']}}"/>
+                  <input type="hidden" name="second" value="{{@$appoints['second']}}"/>
+                  <!-- Submit button -->
+                  <input type="submit" name="submitBtn" value="Add Appointment">
                 </td>
                 <td>{{@$appoints['hour']}}:{{sprintf("%02d",@$appoints['min'])}}</td>
                 <td>{{@$appoints['name']}} {{@$appoints['lastName']}} </td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
-        </div>
-          <!-- Submit button -->
-        @if(count(@$appoitnments) > 0)
-        <input type="submit" name="submitBtn" value="Add Appointment">
-        @endif
-        <a href="{{url('home')}}"><input type="button" name="submitBtn" value="Cancle"></a>
-      </form>
+              </form>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+
+      <a href="{{url('home')}}"><input type="button" name="submitBtn" value="Cancle"></a>
     </div>
   </div>
 </div>
