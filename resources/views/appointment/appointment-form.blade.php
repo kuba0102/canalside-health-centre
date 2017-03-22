@@ -105,13 +105,14 @@ $yearCount = date('Y');
             </thead>
             <tbody>
               @foreach($appoitnments as $appoints)
-              <input type="hidden" name="docId" value="{{@$appoints['docId']}}"/>
-              <input type="hidden" name="date" value="{{@$appoints['date']}}"/>
-              <input type="hidden" name="hour" value="{{@$appoints['hour']}}"/>
-              <input type="hidden" name="min" value="{{@$appoints['min']}}"/>
-              <input type="hidden" name="second" value="{{@$appoints['second']}}"/>
               <tr>
-                <td><input type="radio" name="patientId" value="{{@$patient->id}}" required></td>
+                <td><input type="radio" name="patientId" value="{{@$patient->id}}">
+                  <input type="radio" name="docId" value="{{@$appoints['docId']}}"/>
+                  <input type="radio" name="date" value="{{@$appoints['date']}}"/>
+                  <input type="radio" name="hour" value="{{@$appoints['hour']}}"/>
+                  <input type="radio" name="min" value="{{@$appoints['min']}}"/>
+                  <input type="radio" name="second" value="{{@$appoints['second']}}"/>
+                </td>
                 <td>{{@$appoints['hour']}}:{{sprintf("%02d",@$appoints['min'])}}</td>
                 <td>{{@$appoints['name']}} {{@$appoints['lastName']}} </td>
               </tr>
@@ -125,7 +126,6 @@ $yearCount = date('Y');
         @endif
         <a href="{{url('home')}}"><input type="button" name="submitBtn" value="Cancle"></a>
       </form>
-
     </div>
   </div>
 </div>

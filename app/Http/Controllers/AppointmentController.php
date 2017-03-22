@@ -109,12 +109,12 @@ Displays appoitment details and if appointment booking was sucesfull.
       'second' => 'required|numeric',
       'patientId' => 'required|numeric'
     ]);
-    echo $request->min;
-    // $appointment->doctor_id = $request->docId;
-    // $appointment->patient_id = $request->patientId;
-    // $appointment->date = $request->date;
-    // $appointment->time = sprintf("%02d",$request->hour).sprintf("%02d",$request->min).sprintf("%02d",$request->second);
-    // $appointment->save();
-    // return view('appointment/appointment-details');
+    echo $request->hour.$request->min;
+    $appointment->doctor_id = $request->docId;
+    $appointment->patient_id = $request->patientId;
+    $appointment->date = $request->date;
+    $appointment->time = sprintf("%02d",$request->hour).sprintf("%02d",$request->min).sprintf("%02d",$request->second);
+    $appointment->save();
+    return view('appointment/appointment-details');
   }
 }
