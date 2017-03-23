@@ -27,7 +27,7 @@
       {{ csrf_field() }}
       <br><input type="radio" id="appointId" name="appointId" value="{{@$appoint->id}}" required>
       <label>Cancel Appointment?</label>
-      <input type="submit" name="submitBtn" value="Cancel Appointment">
+      <input type="submit" class="tbn btn-danger btn-md" name="submitBtn" value="Cancel Appointment">
     </form>
 
   </div>

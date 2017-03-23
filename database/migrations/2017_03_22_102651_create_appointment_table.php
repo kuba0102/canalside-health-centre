@@ -20,6 +20,8 @@ class CreateAppointmentTable extends Migration
             $table->foreign('doctor_id')->references('id')->on('chc_staff')->onDelete('cascade');
             $table->integer('patient_id')->unsigned()->nullable();
             $table->foreign('patient_id')->references('id')->on('chc_patients')->onDelete('cascade');
+            $table->integer('status_id')->unsigned()->nullable();
+            $table->foreign('status_id')->references('id')->on('chc_status_appointments');
             $table->date('date');
             $table->time('time');
             $table->timestamps();

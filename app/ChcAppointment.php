@@ -31,4 +31,30 @@ class ChcAppointment extends Model
         return 1;
       }
     }
+
+    /*
+    param: option = either doctor or patient.
+    param: id = person id.
+    return: retrun appoitnments
+    */
+    public static function getAppointments($option , $id)
+    {
+      if($option == 1)
+      {
+        $search = 'chc_appointments.doctor_id';
+      }
+      if($option == 2)
+      {
+        $search = 'chc_appointments.patient_id';
+      }
+
+      $appoitnments = DB::table('chc_appointments')
+      ->join('chc_staff', 'chc_appointments.doctor_id', '=', 'chc_staff.id')
+      ->select('chc_appointments.id', 'chc_staff.name', 'chc_staff.last_name', 'chc_appointments.time',
+      'chc_appointments.date', 'chc_appointments.status_id')
+      ->where($search, '=', $id)
+      ->orderBy('chc_appointments.date', 'chc_appointments.time', 'chc_staff.last_name')
+      ->get();
+      return $appoitnments;
+    }
 }

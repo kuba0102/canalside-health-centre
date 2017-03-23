@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\ChcPatient;
 use App\ChcStaff;
 use App\ChcGender;
+use App\ChcAppointment;
 
 use Illuminate\Http\Request;
 
@@ -79,7 +80,9 @@ class PatientController extends Controller
     $patient = ChcPatient::find($patientId);
     $doctor = ChcStaff::find($patient->doctor_id);
     $gender = ChcGender::find($patient->gender_id);
-    return view('patient/details',['patient' => $patient, 'doctor' => $doctor, 'gender' => $gender]);
+    $appointments = ChcAppointment::getAppointments(2, $patientId);
+    
+    return view('patient/details',['patient' => $patient, 'doctor' => $doctor, 'gender' => $gender, 'appointments' => $appointments]);
   }
 
   /*

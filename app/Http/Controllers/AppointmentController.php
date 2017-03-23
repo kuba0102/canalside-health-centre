@@ -123,10 +123,17 @@ class AppointmentController extends Controller
     $appointment->patient_id = $request->patientId;
     $appointment->date = $request->date;
     $appointment->time = sprintf("%02d",$request->hour).sprintf("%02d",$request->min).sprintf("%02d",$request->second);
+    $appointment->status_id = 2;
     $appointment->save();
     return redirect('appointmentDetails/'.$appointment->id);
   }
 
+/*
+Displays certain appointment details.
+Find appointment by id.
+Finds donctor details using appointment doctor id.
+Finds patient details using appointment patient id.
+*/
   function appointmentDetails($appointId)
   {
     $appoint = ChcAppointment::find($appointId);
