@@ -18,8 +18,8 @@
     </ul>
 
     <!--Extra Options-->
-    <p><a href="{{url('updatePatientForm/'.$patient->id)}}"><input type="submit" name="submitBtn" value="Update Patient Details"></a></p>
-    <p><a href="{{url('addAppointmentForm/'.$patient->id.'/'.$doctor->id)}}"><input type="submit" name="submitBtn" value="Add Appointment Details"></a></p>
+    <p><input type="submit" name="submitBtn" value="Update Patient Details" onclick="window.location.href='{{url('updatePatientForm/'.$patient->id)}}'"></p>
+    <p><input type="submit" name="submitBtn" value="Add Appointment Details" onclick="window.location.href='{{url('addAppointmentForm/'.$patient->id.'/'.$doctor->id)}}'"></p>
     <form action="{{url('removePatient')}}" method="POST">
       {{ csrf_field() }}
       <label>Remove Patient</label>
@@ -40,7 +40,6 @@
         <tbody>
           @foreach(@$appointments as $appoints)
           <tr>
-
             <td>{{@$appoints->time}}</td>
             <td>{{@$appoints->date}}</td>
             <td>{{@$appoints->name}} {{@$appoints->last_name}} </td>
@@ -51,7 +50,7 @@
               <span class="label label-warning">Not Attended</span>
               @endif
             </td>
-            <td><a href="{{url('appointmentDetails/'.$appoints->id)}}"><input type="button" class="btn btn-info btn-sm" value="View Details"></a></td>
+            <td><a href="{{url('appointmentDetails/'.$appoints->id)}}"><input type="button" class="btn btn-success btn-sm" value="View Details"></a></td>
           </tr>
           @endforeach
         </tbody>

@@ -1,4 +1,5 @@
-@php // variables for date picker
+@php
+// variables for date picker
 $dayCount = 1;
 $monthCount = 1;
 $yearCount = date('Y');
@@ -90,7 +91,7 @@ $yearCount = date('Y');
     </div>
 
     <div class="well well-sm">
-      <h4><span class="label label-primary">Available Appointments</span></h4>
+      <h3><span class="label label-primary">Available Appointments</span></h3>
       <div class="input-group">
         <table class="table table-striped">
           <thead>
@@ -112,7 +113,7 @@ $yearCount = date('Y');
                   <input type="hidden" name="min" value="{{@$appoints['min']}}"/>
                   <input type="hidden" name="second" value="{{@$appoints['second']}}"/>
                   <!-- Submit button -->
-                  <input type="submit" name="submitBtn" value="Add Appointment">
+                  <input type="submit" name="submitBtn" class="btn btn-success btn-sm" value="Add Appointment">
                 </td>
                 <td>{{@$appoints['hour']}}:{{sprintf("%02d",@$appoints['min'])}}</td>
                 <td>{{@$appoints['name']}} {{@$appoints['lastName']}} </td>
@@ -123,7 +124,7 @@ $yearCount = date('Y');
         </table>
       </div>
 
-      <a href="{{url('home')}}"><input type="button" name="submitBtn" value="Cancle"></a>
+      <input type="button" name="submitBtn" value="Cancle" onclick="window.location.href='{{url('home')}}'">
     </div>
   </div>
 </div>
