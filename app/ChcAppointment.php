@@ -8,7 +8,11 @@ use Illuminate\Support\Facades\DB;
 class ChcAppointment extends Model
 {
 
-
+  /*
+  Checks if appointment is already in the data base.
+  Returns 0 if the is no appoitnment for that date, time and doctor.
+  Returns 1 if the is appoitnment for that date, time and doctor.
+  */
     public static function appointmentCheck($doctorId, $date, $time)
     {
       $appoitnment = DB::table('chc_appointments')

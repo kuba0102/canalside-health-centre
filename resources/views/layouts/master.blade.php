@@ -10,7 +10,7 @@
       <h1>Canalside Health Centre</h1>
     </div>
   </div>
-
+  <!-- Navigation -->
   <div class="container">
     <div class="panel panel-default">
       <div class="panel-body">
@@ -26,9 +26,10 @@
     </div>
   </div>
   @show
-
+  <!-- Login User info -->
   <div class="container">
     <div>Logged in as : {{Auth::user()->name}} {{Auth::user()->last_name}}</div>
+    <!-- Content of the page -->
     @yield('content')
   </div>
 </body>

@@ -10,6 +10,7 @@ class ChcStaff extends Model
   protected $table = 'chc_staff';
 
 /*
+This method gets the list of doctors from the data base
 return: docList = list of doctors.
 */
   static function getDoctorList()

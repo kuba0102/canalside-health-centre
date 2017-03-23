@@ -13,6 +13,12 @@ class AppointmentController extends Controller
   private $min;
   private $second;
 
+  /*
+  Constructor for AppointmentController
+  Checks if user is loged in.
+  Sets time variables to default values:
+  hour, min and second.
+  */
   function __construct()
   {
     $this->middleware('auth'); //checks if user is loged in
@@ -21,9 +27,10 @@ class AppointmentController extends Controller
     $this->second = sprintf("%02d",0);
   }
 
-/*
-Simple timer class that increamnts minutes by 30 min.
-*/
+  /*
+  Simple timer class that increamnts minutes by 30 min.
+  If min is equal to 60 min rool over back to 0 and increment hour by 1.
+  */
   function incremenTime()
   {
     $this->min = $this->min + 30;
@@ -34,10 +41,10 @@ Simple timer class that increamnts minutes by 30 min.
     }
   }
 
-/*
-This method gets three time private variables and returns full time.
-Returns time.
-*/
+  /*
+  This method gets three time private variables and returns full time.
+  Returns time.
+  */
   function getTime()
   {
     return $this->hour.$this->min.$this->second;
@@ -94,27 +101,44 @@ Returns time.
     return view('appointment/appointment-form',['patient' => $patient], ['appoitnments' => $appoitnments]);
   }
 
-/*
-Displays appoitment details and if appointment booking was sucesfull.
-*/
-  function appointmentDetails(Request $request)
+  /*
+  Validates and then process data from the form into database.
+  Displays appoitment details and if appointment booking was sucesfull.
+  Redirects to booked appoitment details page.
+  */
+  function addAppointment(Request $request)
   {
     $appointment = new ChcAppointment();
     $this->validate($request,
     [
-      'docId' => 'required|numeric',
-      'date' => 'required|numeric',
-      'hour' => 'required|numeric',
-      'min' => 'required|numeric',
-      'second' => 'required|numeric',
-      'patientId' => 'required|numeric'
+    'docId' => 'required|numeric',
+    'date' => 'required|numeric',
+    'hour' => 'required|numeric',
+    'min' => 'required|numeric',
+    'second' => 'required|numeric',
+    'patientId' => 'required|numeric'
     ]);
-    echo $request->hour.$request->min;
+
     $appointment->doctor_id = $request->docId;
     $appointment->patient_id = $request->patientId;
     $appointment->date = $request->date;
     $appointment->time = sprintf("%02d",$request->hour).sprintf("%02d",$request->min).sprintf("%02d",$request->second);
     $appointment->save();
-    return redirect('home');
+    return redirect('appointmentDetails/'.$appointment->id);
+  }
+
+  function appointmentDetails($appointId)
+  {
+    $appoint = ChcAppointment::find($appointId);
+    $doc = ChcStaff::find($appoint->doctor_id);
+    $patient  = ChcPatient::find($appoint->patient_id);
+
+    return view('appointment/appointment-details',['patient' => $patient, 'appoint' => $appoint, 'doc' => $doc]);
+  }
+
+  function appointmentRemove(Request $request)
+  {
+    ChcAppointment::destroy($request->appointId);
+    return redirect('allPatients');
   }
 }
