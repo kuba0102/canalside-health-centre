@@ -123,8 +123,7 @@ $yearCount = date('Y');
           </tbody>
         </table>
       </div>
-
-      <input type="button" name="submitBtn" value="Cancle" onclick="window.location.href='{{url('home')}}'">
+      <input type="button" name="submitBtn" value="Cancle" onclick="window.location.href='{{url('details/'.$patient->id)}}'">
     </div>
   </div>
 </div>

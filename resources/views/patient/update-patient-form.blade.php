@@ -117,7 +117,7 @@ $yearCount = 1900;
       <label>Confirm Update?</label>
       <input type='checkbox'required id="patient" name='patient'/>
       <input type="submit" name="submitBtn" value="Update Patient">
-      <a href="{{url('details/'.$patient->id)}}"><input type="button" name="submitBtn" value="Cancle"></a>
+      <input type="button" name="submitBtn" value="Cancle" onclick="window.location.href='{{url('details/'.$patient->id)}}'">
     </form>
 
 
