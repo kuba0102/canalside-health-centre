@@ -29,3 +29,8 @@ Route::post('updatePatient/{patientId}', 'PatientController@updatePatient')->mid
 
 Route::get('allPatients', 'PatientController@allPatients')->middleware('can:create,App\ChcPatient');
 Route::get('details/{patientId}', 'PatientController@details');
+
+Route::get('addAppointmentForm/{patientId}/{doctorId}', 'AppointmentController@appointmentForm')->middleware('can:create,App\ChcPatient');
+Route::post('addAppointment', 'AppointmentController@addAppointment')->middleware('can:create,App\ChcPatient');
+Route::get('appointmentDetails/{appointId}', 'AppointmentController@appointmentDetails')->middleware('can:create,App\ChcPatient');
+Route::post('cancelAppoitnment', 'AppointmentController@appointmentRemove')->middleware('can:create,App\ChcPatient');

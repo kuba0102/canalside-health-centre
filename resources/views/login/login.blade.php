@@ -4,11 +4,13 @@
   <link href="{{asset('/css/app.css')}}" rel="stylesheet" type="text/css">
 </head>
 <body>
+  <!-- Banner -->
   <div class="container">
     <div class="jumbotron">
       <h1>Canalside Health Centre</h1>
     </div>
   </div>
+  <!-- Login Form -->
   <div class="container">
     <div class="panel panel-default">
       <div class="panel-body">

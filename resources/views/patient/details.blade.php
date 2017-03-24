@@ -18,13 +18,44 @@
     </ul>
 
     <!--Extra Options-->
-    <p><a href="{{url('updatePatientForm/'.$patient->id)}}"><input type="submit" name="submitBtn" value="Update Patient Details"></a></p>
+    <p><input type="submit" name="submitBtn" value="Update Patient Details" onclick="window.location.href='{{url('updatePatientForm/'.$patient->id)}}'"></p>
+    <p><input type="submit" name="submitBtn" value="Add Appointment Details" onclick="window.location.href='{{url('addAppointmentForm/'.$patient->id.'/'.$doctor->id)}}'"></p>
     <form action="{{url('removePatient')}}" method="POST">
       {{ csrf_field() }}
       <label>Remove Patient</label>
       <input type='checkbox'required value='{{@$patient->id}}' id="patient" name='patient'/>
-      <input type="submit" name="submitBtn" value="Delete Patient">
+      <input type="submit" class="tbn btn-danger btn-md" name="submitBtn" value="Delete Patient">
     </form>
+    <h3><span class="label label-primary">Appointments</span></h3>
+    <div class="well well-sm">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Date</th>
+            <th>Doctor Name</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach(@$appointments as $appoints)
+          <tr>
+            <td>{{@$appoints->time}}</td>
+            <td>{{@$appoints->date}}</td>
+            <td>{{@$appoints->name}} {{@$appoints->last_name}} </td>
+            <td>
+              @if($appoints->status_id == 1)
+              <span class="label label-success">Attended</span>
+              @else
+              <span class="label label-warning">Not Attended</span>
+              @endif
+            </td>
+            <td><a href="{{url('appointmentDetails/'.$appoints->id)}}"><input type="button" class="btn btn-success btn-sm" value="View Details"></a></td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 

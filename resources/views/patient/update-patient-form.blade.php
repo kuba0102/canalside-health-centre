@@ -45,77 +45,82 @@ $yearCount = 1900;
         <span class="input-group-addon" id="address"></span>
         <input type="text" name="address" class="form-control" placeholder="Address" aria-describedby="basic-addon1" value="{{@$patient->address}}">
       </div>
-      <!-- Gender radio buttons -->
-      <label>Gender: </label>
-      <div class="input-group">
-        <label>Male</label>
-        @if($patient->gender_id == 1)
-        <input type="radio" name="gender" value="1" checked>
-        @else
-        <input type="radio" name="gender" value="1">
-        @endif
-        <label>Female</label>
-        @if($patient->gender_id == 2)
-        <input type="radio" name="gender" value="2" checked>
-        @else
-        <input type="radio" name="gender" value="2">
-        @endif
-      </div>
-      <!-- Docotr selection list -->
-      <label>Doctor: </label>
-      <div class="input-group">
-        <select required id="docId" name="docId">
-          <option value="{{@$patient->doctor_id}}">Keep Same Doctor</option>
-          @foreach ($doctors as $doctor)
-          <option value="{{@$doctor->id}}">{{@$doctor->name}} {{@$doctor->last_name}} </option>
-          @endforeach
-        </select>
-      </div>
-      <!-- Date of birth selection lists -->
-      <label>Date Of Birth: </label>
-      <div class="input-group">
-        <select required name="DOBDay">
-          <option value="{{substr($patient->date_of_birth, 8)}}">{{substr($patient->date_of_birth, 8)}}</option>
-          <option> - Day - </option>
-          @while($dayCount <= 31)
-          @if($dayCount <= 9)
-          <option value="0{{$dayCount}}">0{{$dayCount}}</option>
+      <div class="well well-sm">
+        <!-- Gender radio buttons -->
+        <h4><span class="label label-primary">Gender</span></h4>
+        <div class="input-group">
+
+          @if($patient->gender_id == 1)
+          <input type="radio" name="gender" value="1" checked>
           @else
-          <option value="{{$dayCount}}">{{$dayCount}}</option>
+          <input type="radio" name="gender" value="1">
           @endif
-          {{$dayCount++}}
-          @endwhile
-        </select>
+          <label>Male</label><br>
 
-        <select required name="DOBMonth">
-          <option value="{{substr($patient->date_of_birth, 5,-3)}}">{{substr($patient->date_of_birth, 5,-3)}}</option>
-          <option> - Month - </option>
-          @while($monthCount <= 12)
-          @if($monthCount <= 9)
-          <option value="0{{$monthCount}}">0{{$monthCount}}</option>
+          @if($patient->gender_id == 2)
+          <input type="radio" name="gender" value="2" checked>
           @else
-          <option value="{{$monthCount}}">{{$monthCount}}</option>
+          <input type="radio" name="gender" value="2">
           @endif
-          {{$monthCount++}}
-          @endwhile
-        </select>
+          <label>Female</label>
+        </div>
+        <!-- Docotr selection list -->
+        <h4><span class="label label-primary">Doctor</span></h4>
+        <div class="input-group">
+          <select required id="docId" name="docId">
+            <option value="{{@$patient->doctor_id}}">Keep Same Doctor</option>
+            @foreach ($doctors as $doctor)
+            <option value="{{@$doctor->id}}">{{@$doctor->name}} {{@$doctor->last_name}} </option>
+            @endforeach
+          </select>
+        </div>
+        <!-- Date of birth selection lists -->
+        <h4><span class="label label-primary">Date Of Birth</span></h4>
+        <div class="input-group">
+          <select required name="DOBDay">
+            <option value="{{substr($patient->date_of_birth, 8)}}">{{substr($patient->date_of_birth, 8)}}</option>
+            <option> - Day - </option>
+            @while($dayCount <= 31)
+            @if($dayCount <= 9)
+            <option value="0{{$dayCount}}">0{{$dayCount}}</option>
+            @else
+            <option value="{{$dayCount}}">{{$dayCount}}</option>
+            @endif
+            {{$dayCount++}}
+            @endwhile
+          </select>
 
-        <select required name="DOBYear">
-          <option value="{{substr($patient->date_of_birth, 0, -6)}}">{{substr($patient->date_of_birth, 0, -6)}}</option>
-          <option> - Year - </option>
-          @while($yearCount <= date('Y'))
-          <option value="{{$yearCount}}">{{$yearCount}}</option>
-          {{$yearCount++}}
-          @endwhile
-        </select>
+          <select required name="DOBMonth">
+            <option value="{{substr($patient->date_of_birth, 5,-3)}}">{{substr($patient->date_of_birth, 5,-3)}}</option>
+            <option> - Month - </option>
+            @while($monthCount <= 12)
+            @if($monthCount <= 9)
+            <option value="0{{$monthCount}}">0{{$monthCount}}</option>
+            @else
+            <option value="{{$monthCount}}">{{$monthCount}}</option>
+            @endif
+            {{$monthCount++}}
+            @endwhile
+          </select>
+
+          <select required name="DOBYear">
+            <option value="{{substr($patient->date_of_birth, 0, -6)}}">{{substr($patient->date_of_birth, 0, -6)}}</option>
+            <option> - Year - </option>
+            @while($yearCount <= date('Y'))
+            <option value="{{$yearCount}}">{{$yearCount}}</option>
+            {{$yearCount++}}
+            @endwhile
+          </select>
+        </div>
       </div>
-
       <!-- Confrim button filed -->
       <label>Confirm Update?</label>
       <input type='checkbox'required id="patient" name='patient'/>
       <input type="submit" name="submitBtn" value="Update Patient">
+      <input type="button" name="submitBtn" value="Cancle" onclick="window.location.href='{{url('details/'.$patient->id)}}'">
     </form>
-    <p><a href="{{url('details/'.$patient->id)}}"><input type="submit" name="submitBtn" value="Cancle"></a></p>
+
+
   </div>
 </div>
 @endsection

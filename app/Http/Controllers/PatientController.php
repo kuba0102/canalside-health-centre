@@ -1,20 +1,26 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\ChcPatient;
 use App\ChcStaff;
 use App\ChcGender;
+use App\ChcAppointment;
 
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
 {
-
+  /*
+  Construcotr which checks if staff is logged in.
+  */
   function __construct()
   {
     $this->middleware('auth'); //checks if user is loged in
   }
 
+  /*
+  Get the array of doctors.
+  Retuns patient form view.
+  */
   function addForm()
   {
     $docList = ChcStaff::getDoctorList();
@@ -22,7 +28,7 @@ class PatientController extends Controller
   }
 
   /*
-  Process infromation from add patient form
+  Process infromation from add patient form.
   */
   function addPatient(Request $request)
   {
@@ -50,14 +56,13 @@ class PatientController extends Controller
     $patient->address = $request->address;
     $patient->doctor_id = $request->docId;
     $patient->date_of_birth = $request->DOBYear.$request->DOBMonth.$request->DOBDay;
-    //$dateJoined = date('Ymd');
-    //$member->member_date_joined=$dateJoined;
     $patient->save();
     return redirect('allPatients');
   }
 
   /*
-  Retunrs all patients from data base
+  Gets all patients from the data base.
+  Retunrs all patients from data base.
   */
   function allPatients()
   {
@@ -66,20 +71,22 @@ class PatientController extends Controller
   }
 
   /*
-  Returns all infromation
-  param: member_id member id
-  Display member information
+  Returns all infromation.
+  param: member_id member id.
+  Display member information.
   */
   function details($patientId)
   {
     $patient = ChcPatient::find($patientId);
     $doctor = ChcStaff::find($patient->doctor_id);
     $gender = ChcGender::find($patient->gender_id);
-    return view('patient/details',['patient' => $patient, 'doctor' => $doctor, 'gender' => $gender]);
+    $appointments = ChcAppointment::getAppointments(2, $patientId);
+    
+    return view('patient/details',['patient' => $patient, 'doctor' => $doctor, 'gender' => $gender, 'appointments' => $appointments]);
   }
 
   /*
-  Remove user and display list of all members
+  Remove user and redirct to list of all patients.
   */
   function removePatient(Request $request)
   {
@@ -88,8 +95,9 @@ class PatientController extends Controller
   }
 
   /*
-  param: id = patient id
-  Display update members details
+  This method displays update form.
+  param: id = patient id.
+  returns update form.
   */
   function updateForm($patientId)
   {
@@ -99,8 +107,8 @@ class PatientController extends Controller
   }
 
   /*
-  param: patietId = patient id to be updated
-  Process infromation from update member form
+  param: patietId = patient id to be updated.
+  Process infromation from update member form.
   */
   function updatePatient(Request $request, $patientId)
   {
