@@ -55,6 +55,8 @@
           @endforeach
         </tbody>
       </table>
+      <input type="button" onclick="window.location.href='{{url('appointmentNotes/'.@$patient->id)}}'" 
+      name="notesBtn" class="btn btn-success btn-sm" value="View Notes / Prescriptions">
     </div>
   </div>
 </div>

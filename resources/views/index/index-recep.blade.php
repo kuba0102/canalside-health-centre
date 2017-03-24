@@ -11,6 +11,8 @@
       {{ session('loginError') }}
     </div>
     @endif
+
+    <h1> Receptionist </h1>
+    </div>
   </div>
-</div>
-@endsection
+  @endsection

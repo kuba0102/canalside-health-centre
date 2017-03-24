@@ -11,9 +11,9 @@ class AppointmentsTableSeeder extends Seeder
   */
   public function run()
   {
-    DB::table('chc_appointments')->insert(['doctor_id' => 2,'patient_id' => 1, 'date' => date('Ymd'), 'time' => 93000]);
-    DB::table('chc_appointments')->insert(['doctor_id' => 2,'patient_id' => 1, 'date' => date('Ymd'), 'time' => 103000]);
-    DB::table('chc_appointments')->insert(['doctor_id' => 2,'patient_id' => 1, 'date' => date('Ymd'), 'time' => 100000]);
-    DB::table('chc_appointments')->insert(['doctor_id' => 2,'patient_id' => 1, 'date' => date('Ymd'), 'time' => 130000]);
+    DB::table('chc_appointments')->insert(['doctor_id' => 2,'patient_id' => 1, 'status_id' => 1, 'date' => date('Ymd'), 'time' => 93000]);
+    DB::table('chc_appointments')->insert(['doctor_id' => 2,'patient_id' => 1, 'status_id' => 1, 'date' => date('Ymd'), 'time' => 103000]);
+    DB::table('chc_appointments')->insert(['doctor_id' => 2,'patient_id' => 1, 'status_id' => 2, 'date' => date('Ymd'), 'time' => 100000]);
+    DB::table('chc_appointments')->insert(['doctor_id' => 2,'patient_id' => 1, 'status_id' => 2, 'date' => date('Ymd'), 'time' => 130000]);
   }
 }

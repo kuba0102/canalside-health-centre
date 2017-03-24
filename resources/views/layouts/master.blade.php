@@ -19,7 +19,7 @@
         </div>
         <ul class="nav navbar-nav">
           <li role="presentation"><a href="{{url('home')}}">Home</a></li>
-          @can('create', App\ChcPatient::class)
+          @can('managePatient', App\ChcPatient::class)
           <li><a href="{{url('allPatients')}}">View All Patients</a></li>
           <li><a href="{{url('addPatientForm')}}">Add Patient</a></li>
           @endcan
@@ -36,6 +36,7 @@
   <div class="container">
     <!-- Content of the page -->
     @yield('content')
+
   </div>
 </body>
 </html>

@@ -21,7 +21,7 @@
       <p>{{@$appoint->date}}</p>
       <p>{{@$appoint->time}}</p>
     </div>
-    <input type="button" onclick="window.location.href='{{url('home')}}'" name="submitBtn" value="Continue">
+    <input type="button" onclick="window.location.href='{{url('details/'.$patient->id)}}'" name="submitBtn" value="Continue">
     <input type="button" onclick="window.print();" name="submitBtn" value="Print Appointment">
     <form action="{{url('cancelAppoitnment')}}" method="POST">
       {{ csrf_field() }}

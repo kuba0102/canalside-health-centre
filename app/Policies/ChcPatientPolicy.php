@@ -11,24 +11,12 @@ class ChcPatientPolicy
   use HandlesAuthorization;
 
   /**
-  * Determine whether the user can view the chcPatient.
-  *
-  * @param  \App\User  $user
-  * @param  \App\ChcPatient  $chcPatient
-  * @return mixed
-  */
-  public function view(User $user, ChcPatient $chcPatient)
-  {
-    //
-  }
-
-  /**
   * Determine whether the user can create chcPatients.
   *
   * @param  \App\User  $user
   * @return mixed
   */
-  public function create(User $user)
+  public function managePatient(User $user)
   {
     if($user->pos_id == 1)
     {
@@ -38,26 +26,17 @@ class ChcPatientPolicy
   }
 
   /**
-  * Determine whether the user can update the chcPatient.
+  * Determine whether the user can create chcPatients.
   *
   * @param  \App\User  $user
-  * @param  \App\ChcPatient  $chcPatient
   * @return mixed
   */
-  public function update(User $user, ChcPatient $chcPatient)
+  public function doctorOption(User $user)
   {
-    //
-  }
-
-  /**
-  * Determine whether the user can delete the chcPatient.
-  *
-  * @param  \App\User  $user
-  * @param  \App\ChcPatient  $chcPatient
-  * @return mixed
-  */
-  public function delete(User $user, ChcPatient $chcPatient)
-  {
-    //
+    if($user->pos_id == 2)
+    {
+      return true;
+    }
+    return false;
   }
 }

@@ -15,7 +15,7 @@ class AppointmentController extends Controller
 
   /*
   Constructor for AppointmentController
-  Checks if user is loged in.
+  Checks if user is logged in.
   Sets time variables to default values:
   hour, min and second.
   */
@@ -128,12 +128,12 @@ class AppointmentController extends Controller
     return redirect('appointmentDetails/'.$appointment->id);
   }
 
-/*
-Displays certain appointment details.
-Find appointment by id.
-Finds donctor details using appointment doctor id.
-Finds patient details using appointment patient id.
-*/
+  /*
+  Displays certain appointment details.
+  Find appointment by id.
+  Finds donctor details using appointment doctor id.
+  Finds patient details using appointment patient id.
+  */
   function appointmentDetails($appointId)
   {
     $appoint = ChcAppointment::find($appointId);
@@ -143,6 +143,10 @@ Finds patient details using appointment patient id.
     return view('appointment/appointment-details',['patient' => $patient, 'appoint' => $appoint, 'doc' => $doc]);
   }
 
+  /*
+  Removes appointment from the data base.
+  param: request = data from remove form.
+  */
   function appointmentRemove(Request $request)
   {
     ChcAppointment::destroy($request->appointId);
