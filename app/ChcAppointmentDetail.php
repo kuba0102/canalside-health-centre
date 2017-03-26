@@ -22,4 +22,22 @@ class ChcAppointmentDetail extends Model
     ->get();
     return $appoitnment;
   }
+
+  /*
+  This metod returns pateint appointment note and prescription.
+  param: appointId = appointment unique number.
+  param: patientId = patient unique number.
+  */
+  public static function getAppointmentNote($appointId, $patientId)
+  {
+    $appoitnment = DB::table('chc_appointment_details')
+    ->join('chc_staff', 'chc_appointment_details.doctor_id', '=', 'chc_staff.id')
+    ->select('chc_appointment_details.notes', 'chc_appointment_details.prescription', 'chc_appointment_details.updated_at',
+    'chc_staff.name', 'chc_staff.last_name', 'chc_appointment_details.appointment_id')
+    ->where('patient_id', '=', $patientId)
+    ->where('appointment_id', '=', $appointId)
+    ->get();
+
+    return $appoitnment;
+  }
 }

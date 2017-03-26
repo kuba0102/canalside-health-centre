@@ -23,12 +23,14 @@
     </div>
     <input type="button" onclick="window.location.href='{{url('details/'.$patient->id)}}'" name="submitBtn" value="Continue">
     <input type="button" onclick="window.print();" name="submitBtn" value="Print Appointment">
+    @can('managePatient', App\ChcPatient::class)
     <form action="{{url('cancelAppoitnment')}}" method="POST">
       {{ csrf_field() }}
       <br><input type="radio" id="appointId" name="appointId" value="{{@$appoint->id}}" required>
       <label>Cancel Appointment?</label>
       <input type="submit" class="tbn btn-danger btn-md" name="submitBtn" value="Cancel Appointment">
     </form>
+    @endcan
 
   </div>
 </div>

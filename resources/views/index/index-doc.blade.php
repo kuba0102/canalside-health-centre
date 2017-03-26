@@ -25,7 +25,7 @@
         <tr>
           <td>{{@$appoint->time}}</td>
           <td>{{@$appoint->date}}</td>
-          <td>{{@$appoint->patient_name}} {{@$appoint->patient_last_name}} </td>
+          <td><a href="{{url('details/'.$appoint->patient_id)}}">{{@$appoint->patient_name}} {{@$appoint->patient_last_name}}</a></td>
           <td>
             @if($appoint->status_id == 1)
             <span class="label label-success">Attended</span>

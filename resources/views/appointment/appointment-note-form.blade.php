@@ -27,7 +27,9 @@ $yearCount = date('Y');
       <h3><span class="label label-primary">Patient Details</span></h3>
       <form action="{{url('addAppointmentNote')}}" method="POST">
         {{ csrf_field() }}
-        <input type="text" name="patientName" value="{{@$patient->name}} {{@$patient->last_name}}" disabled/>
+        <a href="{{url('details/'.$patient->id)}}">
+          <input type="text" name="patientName" value="{{@$patient->name}} {{@$patient->last_name}}" disabled/>
+        </a>
 
         <h3><span class="label label-primary">Add Appointment Note</span></h3>
         <textarea class="form-control" name="note" id="note" rows="5">{{@$appointDetails->notes}}</textarea>
