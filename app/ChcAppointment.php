@@ -33,6 +33,7 @@ class ChcAppointment extends Model
   }
 
   /*
+  Gets appoitnment for doctors or patients.
   param: option = either doctor or patient.
   param: id = person id.
   return: retrun appoitnments

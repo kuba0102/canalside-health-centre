@@ -1,15 +1,8 @@
-<html>
-<head>
-  <title>@yield('title')</title>
-  <link href="{{asset('/css/app.css')}}" rel="stylesheet" type="text/css">
-</head>
-<body>
-  <!-- Banner -->
-  <div class="container">
-    <div class="jumbotron">
-      <h1>Canalside Health Centre</h1>
-    </div>
-  </div>
+@extends('layouts.second-master')
+
+@section('title', 'Login')
+
+@section('content')
   <!-- Login Form -->
   <div class="container">
     <div class="panel panel-default">
@@ -37,5 +30,4 @@
       </div>
     </div>
   </div>
-</body>
-</html>
+@endsection
