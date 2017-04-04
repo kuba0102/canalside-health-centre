@@ -1,8 +1,8 @@
 @extends('layouts.master')
-@section('title', 'Appointment Details')
+@section('title', 'Appointment Notes and Prescriptions')
 @section('content')
 <!-- Patient Details -->
-<h1>Appointment Details</h1>
+<h1>Appointment Notes and Prescriptions</h1>
 <div class="panel panel-default">
   <div class="panel-body">
     <h4><label>Patient Details</label></h4>
@@ -22,6 +22,7 @@
     <p>{{@$note->prescription}}</p>
   </div>
   @endforeach
+
   <input type="button" onclick="window.location.href='{{url('home')}}'" name="submitBtn" value="Back">
 </div>
 </div>

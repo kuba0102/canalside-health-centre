@@ -72,4 +72,16 @@ class AppointmentDetailsController extends Controller
     $patient = ChcPatient::find($patientId);
     return view('appointment\appointment-notes', ['appointmentNotes' => $appointmentNotes, 'patient' => $patient]);
   }
+
+  /*
+  This method displays patient note and prescription for the certain appointment.
+  param: appointId = appointment unique id.
+  */
+  function appointmentNote($appointId)
+  {
+    $appointment = ChcAppointment::find($appointId);
+    $patient = ChcPatient::find($appointment->patient_id);
+    $appointmentNote = ChcAppointmentDetail::getAppointmentNote($appointId, $appointment->patient_id);
+    return view('appointment\appointment-notes', ['appointmentNotes' => $appointmentNote, 'patient' => $patient]);
+  }
 }
