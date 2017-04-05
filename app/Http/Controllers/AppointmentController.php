@@ -152,4 +152,26 @@ class AppointmentController extends Controller
     ChcAppointment::destroy($request->appointId);
     return redirect('allPatients');
   }
+
+  /*
+  Checks patient in.
+  param: appointId = appointment id.
+  param: $patientId = patient id.
+  return: returns patient details page.
+  */
+  function checkIn($appointId, $patientId)
+  {
+    if(isset($appointId) && isset($patientId))
+    {
+      $appoint = ChcAppointment::find($appointId);
+      $appoint->status_id = 1;
+      $appoint->save();
+      return redirect('details/'.$patientId.'');
+    }
+    else
+    {
+      return redirect('allPatients');
+    }
+
+  }
 }

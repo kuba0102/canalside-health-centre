@@ -23,6 +23,7 @@ Route::get('logout', 'LoginController@logout');
 
 Route::get('checkInForm', 'CheckInController@checkInForm');
 Route::post('checkIn', 'CheckInController@checkIn');
+Route::get('checkIn/{appointId}/{patientId}', 'AppointmentController@checkIn')->middleware('can:managePatient,App\ChcPatient');
 
 Route::get('addPatientForm', 'PatientController@addForm')->middleware('can:managePatient,App\ChcPatient');
 Route::post('addPatient', 'PatientController@addPatient')->middleware('can:managePatient,App\ChcPatient');
