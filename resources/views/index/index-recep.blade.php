@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Login')
+@section('title', 'Home')
 
 @section('content')
 <h1>Main Menu</h1>

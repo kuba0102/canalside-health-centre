@@ -52,10 +52,11 @@
               <span class="label label-success">Attended</span>
               @else
               <span class="label label-warning">Not Attended</span>
+              <input type="button" onclick="window.location.href='{{url('checkIn/'.@$appoint->id.'/'.@$appoint->patient_id)}}'" name="noteBtn" class="btn btn-success btn-sm" value="Check In">
               @endif
             </td>
             @can('managePatient', App\ChcPatient::class)
-            <td><a href="{{url('appointmentDetails/'.$appoint->id)}}"><input type="button" class="btn btn-success btn-sm" value="Appointment Details"></a></td>
+            <td><input type="button" onclick="window.location.href='{{url('appointmentDetails/'.$appoint->id)}}'" name="detalsBtn" class="btn btn-success btn-sm" value="Appointment Details"></td>
             @endcan
             <td><input type="button" onclick="window.location.href='{{url('appointmentNote/'.@$appoint->id)}}'" name="noteBtn" class="btn btn-success btn-sm" value="View Note / Prescription"></td>
           </tr>
