@@ -32,6 +32,7 @@ Route::get('updatePatientForm/{patientId}', 'PatientController@updateForm')->mid
 Route::post('updatePatient/{patientId}', 'PatientController@updatePatient')->middleware('can:managePatient,App\ChcPatient');
 
 Route::get('allPatients', 'PatientController@allPatients')->middleware('can:managePatient,App\ChcPatient');
+Route::post('allPatients', 'PatientController@patientByNameIDAddre')->middleware('can:managePatient,App\ChcPatient');
 Route::get('details/{patientId}', 'PatientController@details');
 Route::get('appointmentNote/{appointId}', 'AppointmentDetailsController@appointmentNote');
 

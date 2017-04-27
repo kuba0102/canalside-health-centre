@@ -71,6 +71,23 @@ class PatientController extends Controller
   }
 
   /*
+  Get patient by name / by id or by address
+  Retunrs all patients from data base.
+  */
+  function patientByNameIDAddre(Request $request)
+  {
+    if(isset($request->search))
+    {
+      $patients = ChcPatient::patientByNameIDAddre($request->search);
+      return view('patient/all-patients',['patients' => $patients, 'searchTerm' => $request->search]);
+    }
+    else
+    {
+      return redirect('allPatients');
+    }
+  }
+
+  /*
   Returns all infromation.
   param: member_id member id.
   Display member information.
@@ -81,7 +98,7 @@ class PatientController extends Controller
     $doctor = ChcStaff::find($patient->doctor_id);
     $gender = ChcGender::find($patient->gender_id);
     $appointments = ChcAppointment::getAppointments(2, $patientId);
-    
+
     return view('patient/details',['patient' => $patient, 'doctor' => $doctor, 'gender' => $gender, 'appointments' => $appointments]);
   }
 
