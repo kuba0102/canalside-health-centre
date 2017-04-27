@@ -23,7 +23,7 @@
           <label for="title">Patient Id:</label><br>
           <input type="numeric" name="patientId" id="patientId" required>
         </div>
-        <input type="submit" name="submitBtn" value="Check In">
+        <br><input type="submit" name="submitBtn" value="Check In">
       </form>
     </div>
     <label> OR </label>
@@ -34,7 +34,7 @@
           <label for="title">Date of Birth:</label><br>
           <input type="date" name="patientDob" id="patientDob" required>
         </div>
-        <input type="submit" name="submitBtn" value="Check In">
+        <br><input type="submit" name="submitBtn" value="Check In">
       </form>
     </div>
   </div>

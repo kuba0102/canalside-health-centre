@@ -2,12 +2,16 @@
 <head>
   <title>@yield('title')</title>
   <link href="{{asset('/css/app.css')}}" rel="stylesheet" type="text/css">
+
 </head>
 <body>
   @section('header')
   <div class="container">
     <div class="jumbotron">
+      <div class="col-lg-12 col-lg-offset-0 text-center">
       <h1>Canalside Health Centre</h1>
+    </div>
+      @include('layouts/gallery')
     </div>
   </div>
   <!-- Navigation -->
