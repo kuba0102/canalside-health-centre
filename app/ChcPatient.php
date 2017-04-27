@@ -35,4 +35,21 @@ class ChcPatient extends Model
     ->get();
     return $patient;
   }
+
+  /*
+  Returns patient by id, by name, lastname or by address.
+  param: $search = search term.
+  return: retrun patient = patient details.
+  */
+  public static function patientByNameIDAddre($search)
+  {
+    $patient = DB::table('chc_patients')
+    ->select('id', 'name', 'last_name', 'date_of_birth')
+    ->where('id', '=', $search)
+    ->orWhere('name', '=', $search)
+    ->orWhere('last_name', '=', $search)
+    ->orWhere('address', 'like', $search)
+    ->get();
+    return $patient;
+  }
 }
