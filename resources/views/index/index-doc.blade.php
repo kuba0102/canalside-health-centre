@@ -45,6 +45,9 @@
         @endforeach
       </tbody>
     </table>
+    @if(count($appointments) == 0)
+    <h4><label>No Appointments Found</label></h4>
+    @endif
   </div>
 </div>
 @endsection
