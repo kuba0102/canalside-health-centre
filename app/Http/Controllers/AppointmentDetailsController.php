@@ -34,7 +34,7 @@ class AppointmentDetailsController extends Controller
       $isNoteEmpty = "true";
     }
 
-    return view('appointment\appointment-note-form', ['appointment' => $appointment, 'patient' => $patient,
+    return view('appointment-details\appointment-note-form', ['appointment' => $appointment, 'patient' => $patient,
     'appointDetails' => $appointDetails, 'isNoteEmpty' => $isNoteEmpty]);
   }
 
@@ -70,7 +70,7 @@ class AppointmentDetailsController extends Controller
   {
     $appointmentNotes = ChcAppointmentDetail::getAppointmentNotes($patientId);
     $patient = ChcPatient::find($patientId);
-    return view('appointment\appointment-notes', ['appointmentNotes' => $appointmentNotes, 'patient' => $patient]);
+    return view('appointment-details\appointment-notes', ['appointmentNotes' => $appointmentNotes, 'patient' => $patient]);
   }
 
   /*
@@ -82,6 +82,6 @@ class AppointmentDetailsController extends Controller
     $appointment = ChcAppointment::find($appointId);
     $patient = ChcPatient::find($appointment->patient_id);
     $appointmentNote = ChcAppointmentDetail::getAppointmentNote($appointId, $appointment->patient_id);
-    return view('appointment\appointment-notes', ['appointmentNotes' => $appointmentNote, 'patient' => $patient]);
+    return view('appointment-details\appointment-notes', ['appointmentNotes' => $appointmentNote, 'patient' => $patient]);
   }
 }
